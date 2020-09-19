@@ -40,14 +40,14 @@ Odds in decimal (European) format.
 
 Type: `number`
 
-Chance of winning.
+Chance of winning. Need to be between 0 and 1.
 
 #### fractional
 
 Type: `number`\
 Default: `1`
 
-If you want to calculate 'Fractional Kelly Formula', which means betting a certain fraction of a recommended bet.
+If you want to calculate 'Fractional Kelly Formula', which means betting a certain fraction of a recommended bet. Need to be between 0 and 1.
 
 ### return
 
@@ -66,7 +66,7 @@ Bet you should play.
 Type: `number`\
 Default: `0`
 
-Fraction of your bankroll you should play.
+Fraction of your bankroll you should play. Between 0 and 1.
 
 ##### profit
 
