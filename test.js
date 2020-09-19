@@ -24,6 +24,39 @@ test("no value bet", (t) => {
     percentage: 0,
     profit: 0,
     real: 2.86,
-    value: 0.88,
+    value: 0.875,
   });
+});
+
+test("not enough params", (t) => {
+  const error = t.throws(
+    () => {
+      kelly({ bankroll: 1000 });
+    },
+    { instanceOf: TypeError }
+  );
+
+  t.is(error.message, "Not enough parameters");
+});
+
+test("wrong params", (t) => {
+  const error = t.throws(
+    () => {
+      kelly({ bankroll: 1000, odds: 2.2, probability: "high" });
+    },
+    { instanceOf: TypeError }
+  );
+
+  t.is(error.message, "All parameters should be numbers");
+});
+
+test("params out of range", (t) => {
+  const error = t.throws(
+    () => {
+      kelly({ bankroll: 1000, odds: 2.0, probability: 100 });
+    },
+    { instanceOf: TypeError }
+  );
+
+  t.is(error.message, "Probability and fractional should be between 0 and 1");
 });

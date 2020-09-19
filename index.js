@@ -2,6 +2,14 @@
 
 module.exports = ({ bankroll, odds, probability, fractional = 1 }) => {
   if (
+    bankroll === undefined ||
+    odds === undefined ||
+    probability === undefined
+  ) {
+    throw new TypeError("Not enough parameters");
+  }
+
+  if (
     typeof bankroll !== "number" ||
     typeof odds !== "number" ||
     typeof probability !== "number" ||
@@ -10,12 +18,8 @@ module.exports = ({ bankroll, odds, probability, fractional = 1 }) => {
     throw new TypeError("All parameters should be numbers");
   }
 
-  if (probability < 0 && probability > 1) {
-    throw new TypeError("Probability should be between 0 and 1");
-  }
-
-  if (fractional < 0 && fractional > 1) {
-    throw new TypeError("Fractional should be between 0 and 1");
+  if (probability < 0 || probability > 1 || fractional < 0 || fractional > 1) {
+    throw new TypeError("Probability and fractional should be between 0 and 1");
   }
 
   const result = {
@@ -28,7 +32,7 @@ module.exports = ({ bankroll, odds, probability, fractional = 1 }) => {
 
   const mapper = (value) => (precision) => Number(value.toFixed(precision));
 
-  result.value = mapper(odds * probability)(2);
+  result.value = mapper(odds * probability)(4);
   result.real = mapper(1 / probability)(2);
 
   if (result.value < 1) {
