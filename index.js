@@ -15,16 +15,16 @@ module.exports = ({ bankroll, odds, probability, fractional = 1 }) => {
     typeof probability !== "number" ||
     typeof fractional !== "number"
   ) {
-    throw new TypeError("All parameters should be numbers");
+    throw new TypeError("All parameters must be numbers");
   }
 
   if (probability < 0 || probability > 1 || fractional < 0 || fractional > 1) {
-    throw new TypeError("Probability and fractional should be between 0 and 1");
+    throw new TypeError("Probability and fractional must be between 0 and 1");
   }
 
   const result = {
     amount: 0,
-    percentage: 0,
+    fraction: 0,
     profit: 0,
     real: 0,
     value: 0,
@@ -39,10 +39,10 @@ module.exports = ({ bankroll, odds, probability, fractional = 1 }) => {
     return result;
   }
 
-  result.percentage = mapper(
+  result.fraction = mapper(
     (((odds - 1) * probability - (1 - probability)) / (odds - 1)) * fractional
   )(3);
-  result.amount = mapper(result.percentage * bankroll)(2);
+  result.amount = mapper(result.fraction * bankroll)(2);
   result.profit = mapper(result.amount * (odds - 1))(2);
 
   return result;

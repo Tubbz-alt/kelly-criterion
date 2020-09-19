@@ -14,7 +14,7 @@ $ npm install @kamdz/kelly-criterion
 const kelly = require("@kamdz/kelly-criterion");
 
 kelly({ bankroll: 1000, odds: 1.8, probability: 0.6, fractional: 0.25 });
-//=> { amount: 25, percentage: 0.025, profit: 20, real: 1.67, value: 1.08 }
+//=> { amount: 25, fraction: 0.025, profit: 20, real: 1.67, value: 1.08 }
 ```
 
 ## kelly({bankroll, odds, probability, fractional?})
@@ -52,7 +52,7 @@ If you want to calculate 'Fractional Kelly Formula', which means betting a certa
 ### return
 
 Type: `Object`\
-Structure: `{ amount, percentage, profit, real, value }`
+Structure: `{ amount, fraction, profit, real, value }`
 
 ##### amount
 
@@ -61,7 +61,7 @@ Default: `0`
 
 Bet you should play.
 
-##### percentage
+##### fraction
 
 Type: `number`\
 Default: `0`
