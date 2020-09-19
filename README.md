@@ -12,6 +12,8 @@ $ npm install @kamdz/kelly-criterion
 
 ```js
 const kelly = require("@kamdz/kelly-criterion");
+// or
+import kelly from "@kamdz/kelly-criterion";
 
 kelly({ bankroll: 1000, odds: 1.8, probability: 0.6, fractional: 0.25 });
 //=> { amount: 25, percentage: 0.025, profit: 20, real: 1.67, value: 1.08 }
